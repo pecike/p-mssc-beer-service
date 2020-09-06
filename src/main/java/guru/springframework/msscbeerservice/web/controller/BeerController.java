@@ -10,8 +10,10 @@ import java.util.UUID;
 import static org.springframework.http.ResponseEntity.*;
 
 @RestController
-@RequestMapping("/api/v1/beer")
+@RequestMapping(BeerController.API_V1_BEER)
 public class BeerController {
+
+    protected static final String API_V1_BEER = "/api/v1/beer";
 
     @GetMapping("/{beerId}")
     public ResponseEntity<BeerDto> getBeer(@PathVariable UUID beerId) {
