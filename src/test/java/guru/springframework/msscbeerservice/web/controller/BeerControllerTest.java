@@ -10,7 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -33,9 +32,7 @@ class BeerControllerTest {
 
     @Test
     void saveNewBeer() throws Exception {
-        final BeerDto beerDto = getBasicBeerDto()
-                .createdDate(OffsetDateTime.now())
-                .build();
+        final BeerDto beerDto = getBasicBeerDto().build();
         final String beerDtoJson = objectMapper.writeValueAsString(beerDto);
 
         mockMvc.perform(post(BeerController.API_V1_BEER)
@@ -47,10 +44,7 @@ class BeerControllerTest {
     @Test
     void updateBeer() throws Exception {
         final UUID beerId = UUID.randomUUID();
-        final BeerDto beerDto = getBasicBeerDto()
-                .id(beerId)
-                .lastModifiedDate(OffsetDateTime.now())
-                .build();
+        final BeerDto beerDto = getBasicBeerDto().build();
         final String beerDtoJson = objectMapper.writeValueAsString(beerDto);
 
         mockMvc.perform(put(BeerController.API_V1_BEER + "/" + beerId)
@@ -65,7 +59,6 @@ class BeerControllerTest {
                 .beerStyle(BeerStyle.LAGER)
                 .price(BigDecimal.valueOf(0.85))
                 .quantityOnHand(500)
-                .upc(123456789L)
-                .version(1);
+                .upc(123456789L);
     }
 }
