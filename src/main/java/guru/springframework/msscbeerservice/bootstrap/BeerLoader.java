@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
-// TODO Use liquibase instead
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -24,6 +23,7 @@ public class BeerLoader implements CommandLineRunner {
 
     private void loadBeerObjects() {
         if (beerRepository.count() == 0) {
+            log.debug("Inserting beers");
             beerRepository.save(Beer.builder()
                     .beerName("Mango Bobs")
                     .beerStyle("IPA")
